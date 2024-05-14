@@ -26,6 +26,11 @@ public class AdminDeleteAction implements Action {
 		String userId = request.getParameter("userId");
 		
 		userDelete = admindao.adminDelete(userId);
+		
+		response.setContentType("text/html; charset=UTF-8");
+	    PrintWriter out = response.getWriter();
+	    out.println("<script>alert('회원 삭제가 완료되었습니다.'); location.href='./AdminList.ad';</script>");
+	    out.flush();
 	
 		request.setAttribute("userDelete", userDelete);
 		System.out.println(userDelete);

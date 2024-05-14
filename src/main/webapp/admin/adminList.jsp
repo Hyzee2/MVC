@@ -56,6 +56,16 @@
     </style>
 </head>
 <body>
+<%
+if(session.getAttribute("id") == null){
+	%>
+	<script>
+		alert("로그인 후 이용해주세요.");
+		location.href="./LoginForm.lo";
+	</script>
+	<%
+	
+}else{ %>
 <br>
 <br>
 <h1 style="text-align: center; margin-bottom: 30px;">회원 관리</h1>
@@ -87,7 +97,9 @@
                 <h2>회원 목록이 존재하지 않습니다.</h2>
         <%
             }
+            
         %>
     </div>
+    <%} %>
 </body>
 </html>

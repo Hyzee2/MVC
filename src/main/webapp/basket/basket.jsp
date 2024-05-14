@@ -77,6 +77,16 @@
 </script>
 </head>
 <body>
+<%
+if(session.getAttribute("id") == null){
+	%>
+	<script>
+		alert("로그인 후 이용해주세요.");
+		location.href="./LoginForm.lo";
+	</script>
+	<%
+	
+}else{ %>
 <h2 style="text-align:center;">장바구니 페이지</h2>
 <form action="./BasketModify.ba" method="post">
 	<table>
@@ -123,6 +133,7 @@
 	</table>
 	<button class="submit" onclick="submitBasket(this.form)">최종 결제하기</button>
 </form>
+<%} %>
 
 <script>
 	window.onload = function(){

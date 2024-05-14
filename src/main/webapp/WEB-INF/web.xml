@@ -60,4 +60,29 @@
 		<servlet-name>AdminFrontController</servlet-name> 
 		<url-pattern>*.ad</url-pattern> 
 	</servlet-mapping>
+	
+	<error-page>
+      <error-code>404</error-code>
+      <location>/error.jsp</location>
+  </error-page>
+  
+  <error-page>
+      <error-code>405</error-code>
+      <location>/error.jsp</location>
+  </error-page>
+  
+  <error-page>
+      <error-code>406</error-code>
+      <location>/error.jsp</location>
+  </error-page>
+  
+  <error-page>
+      <error-code>407</error-code>
+      <location>/error.jsp</location>
+  </error-page>
+  
+  <error-page>
+      <error-code>500</error-code>
+      <location>/error.jsp</location>
+  </error-page>
 </web-app>
