@@ -118,7 +118,6 @@ public class BoardFrontController extends HttpServlet {
 	    }
 		
 		
-		
 		if(forward.isRedirect()) { // forward라는 변수 안에 isRedirect가 담겨있으므로 true이면 redirect방식, false이면 forward 방식
 			response.sendRedirect(forward.getPath()); // url변경. 이전페이지가 갖고있던 권한은 사라짐 
 		}else { 

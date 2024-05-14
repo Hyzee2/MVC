@@ -43,36 +43,36 @@ public class LoginFrontController extends HttpServlet {
 	}
 	
 	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException { 
-		// get, post ¹æ½ÄÀ» µé¾î¿Íµµ ÇÑ ±ºµ¥¼­ °ü¸®ÇÏµµ·Ï doProcess ¸¸µç´Ù.
-		// ¾î´À jsp ÆÄÀÏ·Î ÀÌµ¿ÇÒ Áö °áÁ¤ÇØÁÖ´Â ¿ªÇÒ
+		// get, post ë°©ì‹ì„ ë“¤ì–´ì™€ë„ í•œ êµ°ë°ì„œ ê´€ë¦¬í•˜ë„ë¡ doProcess ë§Œë“ ë‹¤.
+		// ì–´ëŠ jsp íŒŒì¼ë¡œ ì´ë™í•  ì§€ ê²°ì •í•´ì£¼ëŠ” ì—­í• 
 		// http://localhost:8080/MVC/BoardList.bo
-		String RequestURI = request.getRequestURI(); // ÀüÃ¼ URL ºÒ·¯¿À±â
-		String contextPath = request.getContextPath(); // URL Áß MVC±îÁö ºÒ·¯¿À±â(MVC´Â À¥ ÇÁ·ÎÁ§Æ® ¸í)
-		String command = RequestURI.substring(contextPath.length()); // URL Àß¶ó³»°í BoardList.bo ºÎºĞ¸¸ ÃßÃâ
+		String RequestURI = request.getRequestURI(); // ì „ì²´ URL ë¶ˆëŸ¬ì˜¤ê¸°
+		String contextPath = request.getContextPath(); // URL ì¤‘ MVCê¹Œì§€ ë¶ˆëŸ¬ì˜¤ê¸°(MVCëŠ” ì›¹ í”„ë¡œì íŠ¸ ëª…)
+		String command = RequestURI.substring(contextPath.length()); // URL ì˜ë¼ë‚´ê³  BoardList.bo ë¶€ë¶„ë§Œ ì¶”ì¶œ
 		
-		ActionForward forward = null; // Æ÷¿öµå·Î ÇÒÁö, ¸®´ÙÀÌ·¢¼ÇÀ¸·Î º¸³¾Áö °áÁ¤ÇÏ´Â Å¬·¡½º º¯¼ö
-		Action action = null; // ÀÎÅÍÆäÀÌ½º ActionÀ¸·Î µ¿Àû¹ÙÀÎµùÀ» »ç¿ëÇÔ 
+		ActionForward forward = null; // í¬ì›Œë“œë¡œ í• ì§€, ë¦¬ë‹¤ì´ë™ì…˜ìœ¼ë¡œ ë³´ë‚¼ì§€ ê²°ì •í•˜ëŠ” í´ë˜ìŠ¤ ë³€ìˆ˜
+		Action action = null; // ì¸í„°í˜ì´ìŠ¤ Actionìœ¼ë¡œ ë™ì ë°”ì¸ë”©ì„ ì‚¬ìš©í•¨ 
 		
-		if(command.equals("/Main.lo")){ // ¸ŞÀÎ È­¸éÀ¸·Î ÀÌµ¿ 
+		if(command.equals("/Main.lo")){ // ë©”ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™ 
 			   forward=new ActionForward();
 			   forward.setRedirect(false);
 			   forward.setPath("./login/main.jsp");
-		}else if(command.equals("/LoginForm.lo")){ // ·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿ 
+		}else if(command.equals("/LoginForm.lo")){ // ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™ 
 			   forward=new ActionForward();
 			   forward.setRedirect(false);
 			   forward.setPath("./login/loginForm.jsp");
-		}else if(command.equals("/JoinForm.lo")){ // È¸¿ø°¡ÀÔ È­¸éÀ¸·Î ÀÌµ¿ 
+		}else if(command.equals("/JoinForm.lo")){ // íšŒì›ê°€ì… í™”ë©´ìœ¼ë¡œ ì´ë™ 
 			   forward=new ActionForward();
 			   forward.setRedirect(false);
 			   forward.setPath("./login/joinForm.jsp");
-		}else if(command.equals("/JoinUser.lo")){ // È¸¿ø°¡ÀÔ µî·Ï ¿Ï·á ÈÄ ¸ŞÀÎ È­¸éÀ¸·Î ÀÌµ¿ 
+		}else if(command.equals("/JoinUser.lo")){ // íšŒì›ê°€ì… ë“±ë¡ ì™„ë£Œ í›„ ë©”ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™ 
 			   action = new JoinAction();
 			   try{
 				   forward=action.execute(request, response);
 			   }catch(Exception e){
 				   e.printStackTrace();
 			   }
-	 	}else if(command.equals("/LoginAction.lo")){ // ·Î±×ÀÎ ÈÄ id¿Í pw ¸Â´ÂÁö È®ÀÎÇÏ±â 
+	 	}else if(command.equals("/LoginAction.lo")){ // ë¡œê·¸ì¸ í›„ idì™€ pw ë§ëŠ”ì§€ í™•ì¸í•˜ê¸° 
 			   action = new loginAction();
 			   try{
 				   forward=action.execute(request, response);
@@ -91,12 +91,12 @@ public class LoginFrontController extends HttpServlet {
 		
 		
 		
-		if(forward.isRedirect()) { // forward¶ó´Â º¯¼ö ¾È¿¡ isRedirect°¡ ´ã°ÜÀÖÀ¸¹Ç·Î trueÀÌ¸é redirect¹æ½Ä, falseÀÌ¸é forward ¹æ½Ä
-			response.sendRedirect(forward.getPath()); // urlº¯°æ. ÀÌÀüÆäÀÌÁö°¡ °®°íÀÖ´ø ±ÇÇÑÀº »ç¶óÁü 
+		if(forward.isRedirect()) { // forwardë¼ëŠ” ë³€ìˆ˜ ì•ˆì— isRedirectê°€ ë‹´ê²¨ìˆìœ¼ë¯€ë¡œ trueì´ë©´ redirectë°©ì‹, falseì´ë©´ forward ë°©ì‹
+			response.sendRedirect(forward.getPath()); // urlë³€ê²½. ì´ì „í˜ì´ì§€ê°€ ê°–ê³ ìˆë˜ ê¶Œí•œì€ ì‚¬ë¼ì§ 
 		}else { 
-			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath()); // RequestDispatcher¶ó´Â º¯¼ö ¸¸µé±â
-			dispatcher.forward(request, response); // forward »ç¿ëÇÏ¸é Æ÷¿öµå ¹æ½ÄÀ¸·Î ÀÌµ¿ °¡´É
-			// url º¯°æ¾øÀÌ. ÀÌÀüÆäÀÌÁö°¡ °®°íÀÖ´ø ±ÇÇÑ ±×´ë·Î ½Â°è
+			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath()); // RequestDispatcherë¼ëŠ” ë³€ìˆ˜ ë§Œë“¤ê¸°
+			dispatcher.forward(request, response); // forward ì‚¬ìš©í•˜ë©´ í¬ì›Œë“œ ë°©ì‹ìœ¼ë¡œ ì´ë™ ê°€ëŠ¥
+			// url ë³€ê²½ì—†ì´. ì´ì „í˜ì´ì§€ê°€ ê°–ê³ ìˆë˜ ê¶Œí•œ ê·¸ëŒ€ë¡œ ìŠ¹ê³„
 		}
 		
 	}

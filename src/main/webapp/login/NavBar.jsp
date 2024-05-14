@@ -53,6 +53,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="./BoardList.bo">게시판</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="./login/SearchView.jsp">검색🔍</a>
+					</li>
 					
 				</ul>
 			</div>

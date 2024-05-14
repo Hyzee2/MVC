@@ -1,88 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>MVC</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
-  
-  <resource-ref>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>MVC</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+
+	<resource-ref>
 		<description>Connection</description>
 		<res-ref-name>jdbc/MysqlDB</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
-	
+
 	<!-- 게시판 컨트롤러 -->
 	<servlet>
-		<servlet-name>BoardFrontController</servlet-name> 
-		<servlet-class>net.board.action.BoardFrontController</servlet-class>  
+		<servlet-name>BoardFrontController</servlet-name>
+		<servlet-class>net.board.action.BoardFrontController</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>BoardFrontController</servlet-name> 
-		<url-pattern>*.bo</url-pattern> 
-	</servlet-mapping> 
-	
+		<servlet-name>BoardFrontController</servlet-name>
+		<url-pattern>*.bo</url-pattern>
+	</servlet-mapping>
+
 	<!-- 로그인 컨트롤러 -->
 	<servlet>
-		<servlet-name>LoginFrontController</servlet-name> 
-		<servlet-class>net.login.action.LoginFrontController</servlet-class>  
+		<servlet-name>LoginFrontController</servlet-name>
+		<servlet-class>net.login.action.LoginFrontController</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>LoginFrontController</servlet-name> 
-		<url-pattern>*.lo</url-pattern> 
-	</servlet-mapping> 
-	
+		<servlet-name>LoginFrontController</servlet-name>
+		<url-pattern>*.lo</url-pattern>
+	</servlet-mapping>
+
 	<!-- 장바구니 컨트롤러 -->
 	<servlet>
-		<servlet-name>BasketFrontController</servlet-name> 
-		<servlet-class>net.basket.action.BasketFrontController</servlet-class>  
+		<servlet-name>BasketFrontController</servlet-name>
+		<servlet-class>net.basket.action.BasketFrontController</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>BasketFrontController</servlet-name> 
-		<url-pattern>*.ba</url-pattern> 
-	</servlet-mapping> 
-	
+		<servlet-name>BasketFrontController</servlet-name>
+		<url-pattern>*.ba</url-pattern>
+	</servlet-mapping>
+
 	<!-- 관리자 컨트롤러 -->
 	<servlet>
-		<servlet-name>AdminFrontController</servlet-name> 
-		<servlet-class>net.admin.action.AdminFrontController</servlet-class>  
+		<servlet-name>AdminFrontController</servlet-name>
+		<servlet-class>net.admin.action.AdminFrontController</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>AdminFrontController</servlet-name> 
-		<url-pattern>*.ad</url-pattern> 
+		<servlet-name>AdminFrontController</servlet-name>
+		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- 네이버 검색 컨트롤러 -->
+	<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>net.api.SearchAPI</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/NaverSearch</url-pattern>
+	</servlet-mapping>
+
 	<error-page>
-      <error-code>404</error-code>
-      <location>/error.jsp</location>
-  </error-page>
-  
-  <error-page>
-      <error-code>405</error-code>
-      <location>/error.jsp</location>
-  </error-page>
-  
-  <error-page>
-      <error-code>406</error-code>
-      <location>/error.jsp</location>
-  </error-page>
-  
-  <error-page>
-      <error-code>407</error-code>
-      <location>/error.jsp</location>
-  </error-page>
-  
-  <error-page>
-      <error-code>500</error-code>
-      <location>/error.jsp</location>
-  </error-page>
+		<error-code>404</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>406</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>407</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+
+	<!-- 한글설정 필터추가 -->
+	<filter>
+		<filter-name>Set Character Encoding</filter-name>
+		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Set Character Encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 한글설정 END -->
 </web-app>
